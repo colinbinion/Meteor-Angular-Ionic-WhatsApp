@@ -1,20 +1,17 @@
-import { Controller } from 'angular-ecmascript/module-helpers';
-import { Chats } from '../../../lib/collections';
+import Moment from 'moment';
+import { Filter } from 'angular-ecmascript/module-helpers';
 
-export default class ChatsCtrl extends Controller {
-  constructor() {
-    super(...arguments);
+export default class CalendarFilter extends Filter {
+  filter(time) {
+    if (!time) return;
 
-    this.helpers({
-      data() {
-        return Chats.find();
-      }
+    return Moment(time).calendar(null, {
+      lastDay : '[Yesterday]',
+      sameDay : 'LT',
+      lastWeek : 'dddd',
+      sameElse : 'DD/MM/YY'
     });
-  }
-
-  remove(chat) {
-    Chats.remove(chat._id);
   }
 }
 
-ChatsCtrl.$name = 'ChatsCtrl';
+CalendarFilter.$name = 'calendar';
