@@ -9,7 +9,6 @@ import Loader from 'angular-ecmascript/module-loader';
 import { Meteor } from 'meteor/meteor';
 
 // Modules
-
 import ChatsCtrl from '../controllers/chats.controller';
 import CalendarFilter from '../filters/calendar.filter';
 import RoutesConfig from '../routes';

@@ -33,33 +33,34 @@ Meteor.startup(function() {
   messages.forEach((m) => {
     Messages.insert(m);
   });
-  const chats = [
-   {
-     name: 'Ethan Gonzalez',
-     picture: 'https://randomuser.me/api/portraits/thumb/men/1.jpg'
-   },
-   {
-     name: 'Bryan Wallace',
-     picture: 'https://randomuser.me/api/portraits/thumb/lego/1.jpg'
-   },
-   {
-     name: 'Avery Stewart',
-     picture: 'https://randomuser.me/api/portraits/thumb/women/1.jpg'
-   },
-   {
-     name: 'Katie Peterson',
-     picture: 'https://randomuser.me/api/portraits/thumb/women/2.jpg'
-   },
-   {
-     name: 'Ray Edwards',
-     picture: 'https://randomuser.me/api/portraits/thumb/men/2.jpg'
-   }
- ];
 
-    chats.forEach((chat) => {
-      const message = Messages.findOne({ chatId: { $exists: false } });
-      chat.lastMessage = message;
-      const chatId = Chats.insert(chat);
-      Messages.update(message._id, { $set: { chatId } });
-    });
+  const chats = [
+    {
+      name: 'Ethan Gonzalez',
+      picture: 'https://randomuser.me/api/portraits/thumb/men/1.jpg'
+    },
+    {
+      name: 'Bryan Wallace',
+      picture: 'https://randomuser.me/api/portraits/thumb/lego/1.jpg'
+    },
+    {
+      name: 'Avery Stewart',
+      picture: 'https://randomuser.me/api/portraits/thumb/women/1.jpg'
+    },
+    {
+      name: 'Katie Peterson',
+      picture: 'https://randomuser.me/api/portraits/thumb/women/2.jpg'
+    },
+    {
+      name: 'Ray Edwards',
+      picture: 'https://randomuser.me/api/portraits/thumb/men/2.jpg'
+    }
+  ];
+
+  chats.forEach((chat) => {
+    const message = Messages.findOne({ chatId: { $exists: false } });
+    chat.lastMessage = message;
+    const chatId = Chats.insert(chat);
+    Messages.update(message._id, { $set: { chatId } });
+  });
 });
